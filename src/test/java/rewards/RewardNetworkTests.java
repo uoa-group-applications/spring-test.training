@@ -1,14 +1,13 @@
 package rewards;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
+import common.money.MonetaryAmount;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import common.money.MonetaryAmount;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * A system test that verifies the components of the RewardNetwork application work together to reward for dining

@@ -1,28 +1,21 @@
 package rewards.internal.account;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import javax.sql.DataSource;
-
+import common.money.MonetaryAmount;
+import common.money.Percentage;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-
-import common.money.MonetaryAmount;
-import common.money.Percentage;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.sql.DataSource;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import static org.junit.Assert.*;
 
 /**
  * Tests the JDBC account repository with a test data source to verify data access and relational-to-object mapping

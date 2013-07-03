@@ -1,25 +1,22 @@
 package rewards.internal.reward;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import javax.sql.DataSource;
-
+import common.money.MonetaryAmount;
+import common.money.Percentage;
 import org.junit.Before;
 import org.junit.Test;
-
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import rewards.AccountContribution;
 import rewards.Dining;
 import rewards.RewardConfirmation;
 import rewards.internal.account.Account;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 
-import common.money.MonetaryAmount;
-import common.money.Percentage;
+import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Tests the JDBC reward repository with a test data source to verify data access and relational-to-object mapping

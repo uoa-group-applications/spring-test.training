@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<parent> 
-		<groupId>nz.ac.auckland</groupId>
-		<artifactId>uoa-groovy-parent</artifactId>
-		<version>3.9</version>
-	</parent>
+  <parent>
+    <groupId>nz.ac.auckland</groupId>
+    <artifactId>uoa-groovy-parent</artifactId>
+    <version>3.9</version>
+  </parent>
 
   <groupId>nz.ac.auckland.train</groupId>
   <artifactId>train-spring-test</artifactId>
@@ -16,37 +16,14 @@
   <version>1.1-SNAPSHOT</version>
 
   <properties>
-
     <!-- encoding has to be specified, otherwise Maven uses the encoding of the platform the build is run on -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
     <!-- unified location for version numbers. child projects can override -->
     <spring.framework.version>3.2.2.RELEASE</spring.framework.version>
-    <spring.batch.version>2.1.7.RELEASE </spring.batch.version>
-    <spring.security.version>3.0.5.RELEASE</spring.security.version>
-    <spring.ws.version>2.0.2.RELEASE</spring.ws.version>
-    <spring.integration.version>2.0.5.RELEASE</spring.integration.version>
-    <aspectj.version>1.6.11</aspectj.version>
-    <hibernate.version>3.5.3-Final</hibernate.version>
     <hsqldb.version>1.8.0.10</hsqldb.version>
-    <junit.version>4.7</junit.version>
-    <easymock.version>2.5.2</easymock.version>
-    <jamon.version>2.4</jamon.version>
-    <jpa.version>1.0</jpa.version>
-    <jms.version>1.1.1</jms.version>
-    <jackson.version>1.7.4</jackson.version>
-    <hessian.version>3.1.5</hessian.version>
-    <activemq.version>5.4.2</activemq.version>
-    <cglib.version>2.2</cglib.version>
-    <aspectj.version>1.6.8</aspectj.version>
-    <!--
-      using log4j 1.2.14 because 1.2.15 has a transitive dependency to the
-      JMS and JMX jars. This is not needed in most of our projects
-    -->
-    <log4j.version>1.2.14</log4j.version>
   </properties>
 
-	<dependencies>
+  <dependencies>
     <!-- internal dependency -->
     <dependency>
       <groupId>com.springsource.training.common</groupId>
@@ -77,22 +54,11 @@
       <version>[2,3)</version>
       <scope>test</scope>
     </dependency>
-    <!-- Utils -->
     <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>${log4j.version}</version>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring.framework.version}</version>
     </dependency>
-    <dependency>
-      <groupId>cglib</groupId>
-      <artifactId>cglib</artifactId>
-      <version>${cglib.version}</version>
-    </dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${spring.framework.version}</version>
-		</dependency>
-	</dependencies>
+  </dependencies>
 
 </project>

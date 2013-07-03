@@ -1,16 +1,14 @@
 package rewards.internal.restaurant;
 
-import static org.junit.Assert.*;
-
-import javax.sql.DataSource;
-
+import common.money.Percentage;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.dao.EmptyResultDataAccessException;
-
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 
-import common.money.Percentage;
+import javax.sql.DataSource;
+
+import static org.junit.Assert.*;
 
 /**
  * Tests the JDBC restaurant repository with a test data source to verify data access and relational-to-object mapping

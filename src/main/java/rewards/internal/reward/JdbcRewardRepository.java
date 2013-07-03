@@ -1,18 +1,12 @@
 package rewards.internal.reward;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import javax.sql.DataSource;
-
+import common.datetime.SimpleDate;
 import rewards.AccountContribution;
 import rewards.Dining;
 import rewards.RewardConfirmation;
 
-import common.datetime.SimpleDate;
+import javax.sql.DataSource;
+import java.sql.*;
 
 /**
  * JDBC implementation of a reward repository that records the result of a reward transaction by inserting a reward

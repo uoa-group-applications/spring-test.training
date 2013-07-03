@@ -1,16 +1,14 @@
 package rewards.internal.account;
 
+import common.money.MonetaryAmount;
+import common.money.Percentage;
+import org.springframework.dao.EmptyResultDataAccessException;
+
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import javax.sql.DataSource;
-
-import org.springframework.dao.EmptyResultDataAccessException;
-
-import common.money.MonetaryAmount;
-import common.money.Percentage;
 
 /**
  * Loads accounts from a data source using the JDBC API.

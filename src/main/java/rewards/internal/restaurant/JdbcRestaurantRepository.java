@@ -1,18 +1,15 @@
 package rewards.internal.restaurant;
 
+import common.money.Percentage;
+import org.springframework.dao.EmptyResultDataAccessException;
+import rewards.Dining;
+import rewards.internal.account.Account;
+
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import javax.sql.DataSource;
-
-import org.springframework.dao.EmptyResultDataAccessException;
-
-import rewards.Dining;
-import rewards.internal.account.Account;
-
-import common.money.Percentage;
 
 /**
  * Loads restaurants from a data source using the JDBC API.
