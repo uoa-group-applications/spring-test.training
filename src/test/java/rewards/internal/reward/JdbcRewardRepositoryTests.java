@@ -25,6 +25,7 @@ import common.money.Percentage;
  * Tests the JDBC reward repository with a test data source to verify data access and relational-to-object mapping
  * behavior works as expected.
  */
+// TODO 1: refactor to use Spring's system test support
 public class JdbcRewardRepositoryTests {
 
 	private JdbcRewardRepository repository;
@@ -74,8 +75,8 @@ public class JdbcRewardRepositoryTests {
 	private DataSource createTestDataSource() {
 		return new EmbeddedDatabaseBuilder()
 			.setName("rewards")
-			.addScript("/src/test/resources/testdb/schema.sql")
-			.addScript("/src/test/resources/testdb/test-data.sql")
+			.addScript("testdb/schema.sql")
+			.addScript("testdb/test-data.sql")
 			.build();
 	}
 }

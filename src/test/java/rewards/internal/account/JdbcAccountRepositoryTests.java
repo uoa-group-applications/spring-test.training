@@ -12,29 +12,38 @@ import javax.sql.DataSource;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 
 import common.money.MonetaryAmount;
 import common.money.Percentage;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Tests the JDBC account repository with a test data source to verify data access and relational-to-object mapping
  * behavior works as expected.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:system-test-config.xml")
+// TODO 1 : uncomment following code to see different
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class JdbcAccountRepositoryTests {
 
 	private JdbcAccountRepository repository;
 
+  @Autowired
 	private DataSource dataSource;
 
-	@Before
-	public void setUp() throws Exception {
-		dataSource = createTestDataSource();
-		repository = new JdbcAccountRepository();
-		repository.setDataSource(dataSource);
-	}
+  @Before
+  public void setUp() {
+    repository = new JdbcAccountRepository();
+    repository.setDataSource(dataSource);
+  }
 
 	@Test
 	public void testFindAccountByCreditCard() {
@@ -94,11 +103,24 @@ public class JdbcAccountRepositoryTests {
 		assertEquals(MonetaryAmount.valueOf("4.00"), MonetaryAmount.valueOf(rs.getString(1)));
 	}
 
-	private DataSource createTestDataSource() {
-		return new EmbeddedDatabaseBuilder()
-			.setName("rewards")
-			.addScript("/src/test/resources/testdb/schema.sql")
-			.addScript("/src/test/resources/testdb/test-data.sql")
-			.build();
-	}
+  @Test
+  public void testBeneficiaryInMemoryDB() throws SQLException {
+    String sql = "select SAVINGS from T_ACCOUNT_BENEFICIARY where NAME = ? and ACCOUNT_ID = ?";
+    PreparedStatement stmt = dataSource.getConnection().prepareStatement(sql);
+
+    // assert Annabelle has $4.00 savings now
+    stmt.setString(1, "Annabelle");
+    stmt.setLong(2, 0L);
+    ResultSet rs = stmt.executeQuery();
+    rs.next();
+    assertEquals(MonetaryAmount.valueOf("0.00"), MonetaryAmount.valueOf(rs.getString(1)));
+
+    // assert Corgan has $4.00 savings now
+    stmt.setString(1, "Corgan");
+    stmt.setLong(2, 0L);
+    rs = stmt.executeQuery();
+    rs.next();
+    assertEquals(MonetaryAmount.valueOf("0.00"), MonetaryAmount.valueOf(rs.getString(1)));
+  }
+
 }

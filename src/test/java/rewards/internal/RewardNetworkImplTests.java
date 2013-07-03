@@ -1,11 +1,9 @@
 package rewards.internal;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
+import common.money.MonetaryAmount;
 import org.junit.Before;
 import org.junit.Test;
-
+import org.mockito.Mockito;
 import rewards.AccountContribution;
 import rewards.Dining;
 import rewards.RewardConfirmation;
@@ -13,7 +11,9 @@ import rewards.internal.account.AccountRepository;
 import rewards.internal.restaurant.RestaurantRepository;
 import rewards.internal.reward.RewardRepository;
 
-import common.money.MonetaryAmount;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 
 /**
  * Unit tests for the RewardNetworkImpl application logic. Configures the implementation with stub repositories
@@ -22,19 +22,28 @@ import common.money.MonetaryAmount;
  * Besides helping catch bugs early, tests are a great way for a new developer to learn an API as he or she can see the
  * API in action. Tests also help validate a design as they are a measure for how easy it is to use your code.
  */
+// TODO 1: refactor to use Spring's system test support
 public class RewardNetworkImplTests {
 
 	/**
 	 * The object being tested.
 	 */
+  // TODO 2: set annotation to inject bean from Spring context
 	private RewardNetworkImpl rewardNetwork;
 
+  private AccountRepository accountRepo;
+
+  private RestaurantRepository restaurantRepo;
+
+  private RewardRepository rewardRepo;
+
+  // TODO 3: do we still need to mock everything?
 	@Before
 	public void setUp() throws Exception {
-		// create stubs to facilitate fast in-memory testing with dummy data and no external dependencies
-		AccountRepository accountRepo = new StubAccountRepository();
-		RestaurantRepository restaurantRepo = new StubRestaurantRepository();
-		RewardRepository rewardRepo = new StubRewardRepository();
+		// create mocks to facilitate fast in-memory testing with dummy data and no external dependencies
+		accountRepo = Mockito.mock(AccountRepository.class);
+		restaurantRepo = Mockito.mock(RestaurantRepository.class);
+		rewardRepo = Mockito.mock(RewardRepository.class);
 
 		// setup the object being tested by handing what it needs to work
 		rewardNetwork = new RewardNetworkImpl(accountRepo, restaurantRepo, rewardRepo);
@@ -69,4 +78,5 @@ public class RewardNetworkImplTests {
 		assertEquals(MonetaryAmount.valueOf("4.00"), contribution.getDistribution("Annabelle").getAmount());
 		assertEquals(MonetaryAmount.valueOf("4.00"), contribution.getDistribution("Corgan").getAmount());
 	}
+
 }
