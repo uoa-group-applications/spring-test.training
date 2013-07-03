@@ -12,3 +12,6 @@
 # class
 target
 *.log
+
+# MAC file
+.DS_Store
